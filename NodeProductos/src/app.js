@@ -1,11 +1,14 @@
-const express = require("express");
-const app = express();
+    const express = require('express');
+    const cors = require('cors');
+    const productoRoutes = require('./routes/productos'); // Ajusta path
 
-app.use(express.json()); // <- Esta línea permite que req.body no sea undefined
+    const app = express();
+    app.use(cors());
+    app.use(express.json());
 
-const userRoutes = require("./routes/user.routes");
-app.use("/productos", userRoutes);
+    app.use('/productos', productoRoutes);
 
-app.listen(3000, () => {
-    console.log('Servidor corriendo en http://localhost:3000');
-});
+    const PORT = 3000;
+    app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    });

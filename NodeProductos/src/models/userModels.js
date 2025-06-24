@@ -1,52 +1,33 @@
-const db = require('../config/db');
+    // src/models/userModels.js
+    const Producto = require('./Producto');
 
-exports.getAllProdu = (callback) => {
-    db.query("SELECT * FROM productos",(err, results)=>{
-        if (err) {console.log("Error al obtener los productos", err);
-            callback(err, null);
-        } else{callback(err, results)}
-    });
-}
+    // Obtener todos los productos
+    exports.getAllProdu = async () => {
+    return await Producto.findAll();
+    };
 
-exports.getProduById = (id, callback)=>{
-    db.query("SELECT * FROM productos WHERE id = ?",[id],(err,results)=>{
-        if (err) {console.log("Error al obtenener los productos", err);}
-        else{ callback(null, results[0]);}
-    });
-}
-exports.createProdu = (nombre, descripcion, precio, stock, callback) => {
-    db.query(
-        'INSERT INTO productos (nombre, descripcion, precio, stock) VALUES (?, ?, ?, ?)',
-        [nombre, descripcion, precio, stock],
-        (err, results) => {
-            if (err) {
-                return callback(err, null);
-            }
-            callback(null, { id: results.insertId, nombre, descripcion, precio, stock });
-        }
-    );
-};
-exports.updateProdu = (id, nombre, descripcion, precio, stock, callback) => {
-    db.query(
-        "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, stock = ? WHERE id = ?",
-        [nombre, descripcion, precio, stock, id],
-        (err, results) => {
-            if (err) {
-                callback(err, null);
-            } else {
-                callback(null, { message: 'Producto actualizado exitosamente' });
-            }
-        }
-    );
-};
-exports.deleteProdu = (id, callback) => {
-    db.query('DELETE FROM productos WHERE id = ?', [id], (err, results) => {
-        if (err) {
-            callback(err, null)
-        } else {
-            callback(null, { message: 'Producto eliminado exitosamente' })
-        }
-    })
-}
+    // Obtener un producto por ID
+    exports.getProduById = async (id) => {
+    return await Producto.findByPk(id);
+    };
 
+    // Crear producto
+    exports.createProdu = async (nombre, descripcion, precio, stock) => {
+    return await Producto.create({ nombre, descripcion, precio, stock });
+    };
 
+    // Actualizar producto
+    exports.updateProdu = async (id, nombre, descripcion, precio, stock) => {
+    const producto = await Producto.findByPk(id);
+    if (!producto) throw new Error('Producto no encontrado');
+    await producto.update({ nombre, descripcion, precio, stock });
+    return { message: 'Producto actualizado exitosamente' };
+    };
+
+    // Eliminar producto
+    exports.deleteProdu = async (id) => {
+    const producto = await Producto.findByPk(id);
+    if (!producto) throw new Error('Producto no encontrado');
+    await producto.destroy();
+    return { message: 'Producto eliminado exitosamente' };
+    };
