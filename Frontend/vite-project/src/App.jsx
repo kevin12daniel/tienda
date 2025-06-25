@@ -4,6 +4,7 @@ import './App.css';
 import Productos from './components/Productos';
 import Ofertas from './components/Ofertas';
 import Contacto from './components/Contacto';
+import Shop from './components/Shop';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/Productos" element={<Productos />} />
       <Route path="/Ofertas" element={<Ofertas />} />
       <Route path="/Contacto" element={<Contacto />} />
+      <Route path='/shop' element={<Shop />}/>
     </Routes>
   );
 }

@@ -19,6 +19,7 @@ function Navbar() {
             <NavLink to="/productos" label="Productos" />
             <NavLink to="/ofertas" label="Ofertas" />
             <NavLink to="/contacto" label="Contáctanos" />
+            <NavLink to="/shop" label="Tienda" />
           </div>
 
           {/* Mobile button */}
@@ -40,6 +41,7 @@ function Navbar() {
           <MobileNavLink to="/productos" label="Productos" />
           <MobileNavLink to="/ofertas" label="Ofertas" />
           <MobileNavLink to="/contacto" label="Contáctanos" />
+          <NavLink to="/shop" label="Tienda" />
         </div>
       )}
     </nav>
