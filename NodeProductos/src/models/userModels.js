@@ -7,26 +7,26 @@
     };
 
     // Obtener un producto por ID
-    exports.getProduById = async (id) => {
-    return await Producto.findByPk(id);
+    exports.getProduById = async (Id) => {
+    return await Producto.findByPk(Id);
     };
 
     // Crear producto
-    exports.createProdu = async (nombre, descripcion, precio, stock) => {
-    return await Producto.create({ nombre, descripcion, precio, stock });
+    exports.createProdu = async (Nombre, Descripcion, Precio, Stock) => {
+    return await Producto.create({ Nombre, Descripcion, Precio, Stock });
     };
 
     // Actualizar producto
-    exports.updateProdu = async (id, nombre, descripcion, precio, stock) => {
-    const producto = await Producto.findByPk(id);
+    exports.updateProdu = async (Id, Nombre, Descripcion, Precio, Stock) => {
+    const producto = await Producto.findByPk(Id);
     if (!producto) throw new Error('Producto no encontrado');
-    await producto.update({ nombre, descripcion, precio, stock });
+    await producto.update({ Nombre, Descripcion, Precio, Stock });
     return { message: 'Producto actualizado exitosamente' };
     };
 
     // Eliminar producto
-    exports.deleteProdu = async (id) => {
-    const producto = await Producto.findByPk(id);
+    exports.deleteProdu = async (Id) => {
+    const producto = await Producto.findByPk(Id);
     if (!producto) throw new Error('Producto no encontrado');
     await producto.destroy();
     return { message: 'Producto eliminado exitosamente' };

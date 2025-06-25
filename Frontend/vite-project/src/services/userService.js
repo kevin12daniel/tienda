@@ -8,11 +8,12 @@
     timeout: 5000,
     });
 
+    // 🔧 Corrige nombres de campos a minúsculas
     const validarProducto = (p) => ({
-    Nombre: p.Nombre?.trim() || "",
-    Descripcion: p.Descripcion?.trim() || "",
-    Precio: Number(p.Precio),
-    Stock: Number(p.Stock),
+    nombre: p.Nombre?.trim() || "",
+    descripcion: p.Descripcion?.trim() || "",
+    precio: Number(p.Precio),
+    stock: Number(p.Stock),
     });
 
     const productService = {
